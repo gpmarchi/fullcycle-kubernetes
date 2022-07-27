@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: nodeserver
-          image: "gpmarchi/http-server:v2"
+          image: "gpmarchi/http-server:v3"
