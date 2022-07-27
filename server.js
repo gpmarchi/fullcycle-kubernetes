@@ -1,11 +1,15 @@
 import http from 'http';
+import 'dotenv/config'
 
 const host = '0.0.0.0';
 const port = 3333;
 
 const requestListener = function (req, res) {
+	const name = process.env.NAME;
+	const age = process.env.AGE;
+
   res.writeHead(200);
-  res.end("My first server!!!");
+  res.end(`Hello, I'm ${name}. I'm ${age} years old.`);
 };
 
 const server = http.createServer(requestListener);
