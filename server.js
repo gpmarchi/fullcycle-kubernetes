@@ -1,5 +1,4 @@
 import http from 'http';
-import 'dotenv/config'
 
 const host = '0.0.0.0';
 const port = 3333;

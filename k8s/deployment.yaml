@@ -16,4 +16,9 @@ spec:
     spec:
       containers:
         - name: nodeserver
-          image: "gpmarchi/http-server:v3"
+          image: "gpmarchi/http-server:v4"
+          env:
+            - name: NAME
+              value: "John Doe"
+            - name: AGE
+              value: "40"
