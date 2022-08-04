@@ -4,5 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "type": "module",
-  "dependencies": {}
+  "dependencies": {
+    "httpdispatcher": "^2.2.0"
+  }
 }
