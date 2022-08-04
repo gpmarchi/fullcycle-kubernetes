@@ -16,7 +16,18 @@ spec:
     spec:
       containers:
         - name: nodeserver
-          image: "gpmarchi/http-server:v4"
+          image: "gpmarchi/http-server:v5"
           envFrom:
             - configMapRef:
                 name: nodeserver-env
+          volumeMounts:
+            - mountPath: "/app/myfamily"
+              name: config
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: configmap-family
+            items:
+              - key: members
+                path: "family.txt"
