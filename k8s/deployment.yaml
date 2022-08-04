@@ -16,10 +16,12 @@ spec:
     spec:
       containers:
         - name: nodeserver
-          image: "gpmarchi/http-server:v5"
+          image: "gpmarchi/http-server:v6"
           envFrom:
             - configMapRef:
                 name: nodeserver-env
+            - secretRef:
+                name: nodeserver-secret
           volumeMounts:
             - mountPath: "/app/myfamily"
               name: config

@@ -25,6 +25,14 @@ dispatcher.onGet("/configmap", async function (request, response) {
   }
 });
 
+dispatcher.onGet("/secret", function(request, response) {
+	const user = process.env.USER;
+	const password = process.env.PASSWORD;
+
+  response.writeHead(200, {'Content-Type': 'text/html'});
+  response.end(`<h1>User: ${user}. Password ${password}.</h1>`);
+});
+
 dispatcher.onError(function(request, response) {
   response.writeHead(404);
   response.end("Error, the URL doesn't exist");
