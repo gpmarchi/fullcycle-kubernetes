@@ -17,6 +17,14 @@ spec:
       containers:
         - name: nodeserver
           image: "gpmarchi/http-server:v7"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3333
+            periodSeconds: 5
+            failureThreshold: 1
+            timeoutSeconds: 1
+            successThreshold: 1
           envFrom:
             - configMapRef:
                 name: nodeserver-env
