@@ -5,6 +5,8 @@ import HttpDispatcher from 'httpdispatcher';
 const host = '0.0.0.0';
 const port = 3333;
 
+const startedAt = Date.now();
+
 const dispatcher = new HttpDispatcher();
 
 dispatcher.onGet("/", function(request, response) {
@@ -31,6 +33,18 @@ dispatcher.onGet("/secret", function(request, response) {
 
   response.writeHead(200, {'Content-Type': 'text/html'});
   response.end(`<h1>User: ${user}. Password ${password}.</h1>`);
+});
+
+dispatcher.onGet("/healthz", function(request, response) {
+	const duration = Date.now() - startedAt;
+
+	if (duration > 25) {
+		response.writeHead(500);
+	  response.end(`Duration: ${duration}`);
+	} else {
+		response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.end("ok");
+	}
 });
 
 dispatcher.onError(function(request, response) {
