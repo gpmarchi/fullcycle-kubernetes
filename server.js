@@ -5,7 +5,7 @@ import HttpDispatcher from 'httpdispatcher';
 const host = '0.0.0.0';
 const port = 3333;
 
-const startedAt = Date.now();
+const startedAt = Math.floor(Date.now() / 1000);
 
 const dispatcher = new HttpDispatcher();
 
@@ -36,9 +36,9 @@ dispatcher.onGet("/secret", function(request, response) {
 });
 
 dispatcher.onGet("/healthz", function(request, response) {
-	const duration = Date.now() - startedAt;
+	const duration = Math.floor(Date.now()  / 1000) - startedAt;
 
-	if (duration < 30000) {
+	if (duration < 10 || duration > 30) {
 		response.writeHead(500);
 	  response.end(`Duration: ${duration}`);
 	} else {

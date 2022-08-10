@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: "nodeserver"
-  replicas: 10
+  replicas: 1
   template:
     metadata:
       labels:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nodeserver
-          image: "gpmarchi/http-server:v9"
+          image: "gpmarchi/http-server:v12"
           readinessProbe:
             httpGet:
               path: /healthz
@@ -25,15 +25,18 @@ spec:
             failureThreshold: 1
             timeoutSeconds: 1
             successThreshold: 1
+            initialDelaySeconds: 10
 
-          # livenessProbe:
-          #   httpGet:
-          #     path: /healthz
-          #     port: 3333
-          #   periodSeconds: 5
-          #   failureThreshold: 1
-          #   timeoutSeconds: 1
-          #   successThreshold: 1
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3333
+            periodSeconds: 5
+            failureThreshold: 1
+            timeoutSeconds: 1
+            successThreshold: 1
+            initialDelaySeconds: 15
+
           envFrom:
             - configMapRef:
                 name: nodeserver-env
