@@ -17,6 +17,15 @@ spec:
       containers:
         - name: nodeserver
           image: "gpmarchi/http-server:v12"
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 3333
+            periodSeconds: 3
+            failureThreshold: 30
+            timeoutSeconds: 1
+            successThreshold: 1
+
           readinessProbe:
             httpGet:
               path: /healthz
@@ -25,7 +34,6 @@ spec:
             failureThreshold: 1
             timeoutSeconds: 1
             successThreshold: 1
-            initialDelaySeconds: 10
 
           livenessProbe:
             httpGet:
@@ -35,7 +43,6 @@ spec:
             failureThreshold: 1
             timeoutSeconds: 1
             successThreshold: 1
-            initialDelaySeconds: 15
 
           envFrom:
             - configMapRef:
