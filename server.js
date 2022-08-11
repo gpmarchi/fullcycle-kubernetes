@@ -38,7 +38,7 @@ dispatcher.onGet("/secret", function(request, response) {
 dispatcher.onGet("/healthz", function(request, response) {
 	const duration = Math.floor(Date.now()  / 1000) - startedAt;
 
-	if (duration < 10 || duration > 30) {
+	if (duration < 10 || duration > 10000) {
 		response.writeHead(500);
 	  response.end(`Duration: ${duration}`);
 	} else {
