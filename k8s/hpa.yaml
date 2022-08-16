@@ -8,5 +8,5 @@ spec:
     name: nodeserver
     kind: Deployment
   minReplicas: 1
-  maxReplicas: 5
-  targetCPUUtilizationPercentage: 30
+  maxReplicas: 30
+  targetCPUUtilizationPercentage: 25
